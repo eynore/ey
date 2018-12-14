@@ -53,3 +53,6 @@ func (app *App) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 func (app *App) Listen(addr string) {
 	http.ListenAndServe(addr, app)
 }
+func (app *App) ListenTLS(addr, certFile, keyFile string) {
+	http.ListenAndServeTLS(addr, certFile, keyFile, app)
+}
