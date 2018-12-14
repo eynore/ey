@@ -1,4 +1,4 @@
-package ermao
+package ey
 
 import (
 	"container/list"
@@ -18,10 +18,10 @@ type Context struct {
 
 func (ctx *Context) Next() {
 	if el := ctx.el.Next(); el != nil {
-		el.Value.(Handler)(ctx)
+		el.Value.(func(Ctx))(ctx)
 	}
 }
 
 func (ctx *Context) Out(str string) {
-	ctx.w.Write([]byte(str))
+	ctx.W.Write([]byte(str))
 }

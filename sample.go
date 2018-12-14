@@ -2,18 +2,18 @@
 
 package main
 
-import "ermao"
+import ey "github.com/eynore"
 
 func main() {
-	app := ermao.New()
+	app := ey.New()
 
-	app.Get("/xx", ermao.Handler(func(ctx ermao.Ctx) {
+	app.Get("/xx", func(ctx ey.Ctx) {
 		ctx.Out("nihao ")
 		ctx.Next()
 		ctx.Out("tony")
-	}), ermao.Handler(func(ctx ermao.Ctx) {
+	}, func(ctx ey.Ctx) {
 		ctx.Out("middle")
-	}))
+	})
 
 	app.Listen(":8080")
 
