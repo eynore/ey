@@ -2,12 +2,14 @@ package ey
 
 import (
 	"container/list"
+	"io"
 	"net/http"
 )
 
 type Ctx interface {
 	Next()
 	Out(string)
+	io.Writer
 }
 
 type Context struct {
@@ -24,4 +26,7 @@ func (ctx *Context) Next() {
 
 func (ctx *Context) Out(str string) {
 	ctx.W.Write([]byte(str))
+}
+func (ctx *Context) Write(buf []byte) (int, error) {
+	return ctx.W.Write(buf)
 }
